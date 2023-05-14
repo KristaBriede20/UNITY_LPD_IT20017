@@ -4,45 +4,50 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float lookSpeed = 3f;
-    public float jumpForce = 5f;
+    public CharacterController controller;
+    public float speed = 12f;
 
-    private float xRotation = 0f;
-    private CharacterController characterController;
-    private Camera playerCamera;
+    public float gravity = -9.81f;
+
+    public Transform groundCheck;
+    public float groundDistance = 1f;
+    public LayerMask groundMask;
+    public float jumpHeight = 4f;
+    bool isGrounded;
+
+
+    Vector3 velocity;
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
-        playerCamera = GetComponentInChildren<Camera>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
     }
 
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        Vector3 movement = transform.right * horizontalInput + transform.forward * verticalInput;
-        movement.y = 0f;
-        movement.Normalize();
-
-        characterController.Move(movement * moveSpeed * Time.deltaTime);
-
-        float mouseX = Input.GetAxis("Mouse X") * lookSpeed;
-        float mouseY = Input.GetAxis("Mouse Y") * lookSpeed;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
-
-        if (Input.GetButtonDown("Jump") && characterController.isGrounded)
+        if(isGrounded && velocity.y < 0)
         {
-            characterController.Move(Vector3.up * jumpForce * Time.deltaTime);
+            velocity.y = -2f;
         }
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        controller.Move(move * speed * Time.deltaTime);
+
+        if(Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
+
     }
 }
