@@ -16,6 +16,6 @@ public class CollCaunt : MonoBehaviour
     
     void Update()
     {
-        ballCount.text = "Balls found: " + count;
+        ballCount.text = "Balls found " + count + " of 9";
     }
 }
