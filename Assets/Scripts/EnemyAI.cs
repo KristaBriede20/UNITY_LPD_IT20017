@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour
             Vector3 randomDirection = GetRandomRoomPosition();
             agent.SetDestination(randomDirection);
 
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(20);
 
             // Attack Player state
             isAttackPlayerState = true;
@@ -48,7 +48,7 @@ public class EnemyAI : MonoBehaviour
             enemyCollider.enabled = true;
             agent.speed = attackSpeed;
             enemyAnimator.SetBool("isAttacking", true);
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(20);
         }
     }
 

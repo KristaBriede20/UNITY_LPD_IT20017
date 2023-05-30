@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CollCaunt : MonoBehaviour
 {
-    TMPro.TMP_Text text;
-    int count;
+    public Text ballCount;
+    public static int count;
 
     void Awake()
     {
-        text = GetComponent<TMPro.TMP_Text>();
+        count = 0;
+        ballCount.text = "Balls found: " + count;
     }
-
-    void OnEnable() => Coll.OnCollected += OnCollectibleCollected;
-    void OnDisable() => Coll.OnCollected -= OnCollectibleCollected;
-
-    void OnCollectibleCollected()
+    
+    void Update()
     {
-        text.text = (++count).ToString();
+        ballCount.text = "Balls found: " + count;
     }
-
 }

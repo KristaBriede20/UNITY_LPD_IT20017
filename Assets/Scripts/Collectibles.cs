@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Coll : MonoBehaviour
 {
-    public static event Action OnCollected;
+    public GameObject nextBall;
 
     void Update()
     {
@@ -14,7 +14,8 @@ public class Coll : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            OnCollected?.Invoke();
+            nextBall.SetActive(true);
+            CollCaunt.count++;
             Destroy(gameObject);
         }
     }
