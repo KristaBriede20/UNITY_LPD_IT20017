@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     public Animator enemyAnimator;
     public Renderer[] objectRenderers;
     public GameObject deadText;
+    public GameObject walkSound;
 
     private bool isAttackPlayerState = false;
     private NavMeshAgent agent;
@@ -25,6 +26,7 @@ public class EnemyAI : MonoBehaviour
         enemyCollider = GetComponent<Collider>();
         StartCoroutine(SwitchStateCoroutine());
         deadText.SetActive(false);
+        walkSound.SetActive(false);
     }
 
     private IEnumerator SwitchStateCoroutine()
@@ -60,13 +62,15 @@ public class EnemyAI : MonoBehaviour
         {
             // Move towards the player
             agent.SetDestination(player.position);
+            walkSound.SetActive(true);
         }
         else
         {
             // Randomly move around rooms while exploring the environment
             Vector3 randomDirection = Random.insideUnitSphere * randomWalkRadius;
             randomDirection += GetRandomRoomPosition();
-            agent.SetDestination(randomDirection);
+            agent.SetDestination(randomDirection);walkSound.SetActive(false);
+            walkSound.SetActive(false);
         }
     }
 
@@ -92,6 +96,7 @@ public class EnemyAI : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             deadText.SetActive(true);
+            walkSound.SetActive(false);
             Time.timeScale = 0f;
         }
     }
