@@ -7,12 +7,23 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
     public void QuitGame()
     {
         Application.Quit();
+        Debug.Log("QuitGame");
+    }
+
+    public void Menu()
+    {
+        Debug.Log("Menu");
+        SceneManager.LoadScene(0);
+        CollCaunt.count = 0;
     }
 }

@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     public Animator enemyAnimator;
     public Renderer[] objectRenderers;
+    public GameObject deadText;
 
     private bool isAttackPlayerState = false;
     private NavMeshAgent agent;
@@ -23,6 +24,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         enemyCollider = GetComponent<Collider>();
         StartCoroutine(SwitchStateCoroutine());
+        deadText.SetActive(false);
     }
 
     private IEnumerator SwitchStateCoroutine()
@@ -48,7 +50,7 @@ public class EnemyAI : MonoBehaviour
             enemyCollider.enabled = true;
             agent.speed = attackSpeed;
             enemyAnimator.SetBool("isAttacking", true);
-            yield return new WaitForSeconds(20);
+            yield return new WaitForSeconds(30);
         }
     }
 
@@ -87,7 +89,10 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("dead");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            deadText.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 }
