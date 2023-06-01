@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour
 
     private Vector3 GetRandomRoomPosition()
     {
-        // Replace this method with your own logic to get a random position in the room or environment
+       
         Vector3 randomPosition = new Vector3(Random.Range(-100f, 100f), 0f, Random.Range(-100f, 100f));
         return randomPosition;
     }
