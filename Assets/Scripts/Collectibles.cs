@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 
 public class Coll : MonoBehaviour
 {
     public GameObject nextBall;
+    public AudioClip soundEffect;
 
     void Update()
     {
@@ -17,6 +17,8 @@ public class Coll : MonoBehaviour
             nextBall.SetActive(true);
             CollCaunt.count++;
             Destroy(gameObject);
+
+            AudioSource.PlayClipAtPoint(soundEffect, transform.position);
         }
     }
 }
