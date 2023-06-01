@@ -6187,7 +6187,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: YOU WON, YOU LIVE
+  m_Text: YOU WON,YOU LIVE
 --- !u!222 &1069056502
 CanvasRenderer:
   m_ObjectHideFlags: 0
