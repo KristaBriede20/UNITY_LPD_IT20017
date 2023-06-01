@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour
             Vector3 randomDirection = GetRandomRoomPosition();
             agent.SetDestination(randomDirection);
 
-            yield return new WaitForSeconds(20);
+            yield return new WaitForSeconds(25);
 
             // Attack Player state
             isAttackPlayerState = true;
