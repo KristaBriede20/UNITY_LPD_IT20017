@@ -2355,7 +2355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &416841657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4728,7 +4728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 731450736}
-  speed: 12
+  speed: 4
   gravity: -100
   groundCheck: {fileID: 836759765}
   groundDistance: 1
@@ -4881,7 +4881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 1697265120}
-  resumeButton: {fileID: 0}
+  resumeButton: {fileID: 1786704538}
 --- !u!1001 &756247451
 PrefabInstance:
   m_ObjectHideFlags: 0
